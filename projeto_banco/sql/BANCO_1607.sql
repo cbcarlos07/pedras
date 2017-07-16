@@ -190,9 +190,9 @@ ENGINE = InnoDB;
 -- Table `pedras`.`curso`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pedras`.`curso` (
-  `CD_LIDERANCA` INT NOT NULL,
-  `DS_LIDERANCA` VARCHAR(45) NULL,
-  PRIMARY KEY (`CD_LIDERANCA`))
+  `CD_CURSO` INT NOT NULL,
+  `DS_CURSO` VARCHAR(45) NULL,
+  PRIMARY KEY (`CD_CURSO`))
 ENGINE = InnoDB;
 
 
@@ -224,14 +224,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pedras`.`lideranca` (
   `CD_DESB` INT UNSIGNED NOT NULL,
-  `CD_LIDERANCA` INT NOT NULL,
+  `CD_CURSO` INT NOT NULL,
   `DT_INVESTIDURA` DATE NULL,
   `IMG_CERTIFICADO` BLOB NULL,
-  INDEX `fk_lideranca_curso1_idx` (`CD_LIDERANCA` ASC),
+  INDEX `fk_lideranca_curso1_idx` (`CD_CURSO` ASC),
   INDEX `fk_lideranca_desbravador1_idx` (`CD_DESB` ASC),
   CONSTRAINT `fk_lideranca_curso1`
-    FOREIGN KEY (`CD_LIDERANCA`)
-    REFERENCES `pedras`.`curso` (`CD_LIDERANCA`)
+    FOREIGN KEY (`CD_CURSO`)
+    REFERENCES `pedras`.`curso` (`CD_CURSO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_lideranca_desbravador1`
@@ -341,13 +341,18 @@ ENGINE = InnoDB;
 -- Table `pedras`.`pgto_desb`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pedras`.`pgto_desb` (
-  `CD_DESB` INT(11) UNSIGNED NOT NULL,
-  `CD_PROJETO` INT UNSIGNED NOT NULL,
-  INDEX `fk_pgto_evento_desbravador1_idx` (`CD_DESB` ASC),
-  INDEX `fk_pgto_evento_projeto1_idx` (`CD_PROJETO` ASC),
+  `CD_DESB` INT UNSIGNED NOT NULL,
+  `CD_EVENTO` INT UNSIGNED NOT NULL,
+  INDEX `fk_pgto_evento_projeto1_idx` (`CD_EVENTO` ASC),
+  INDEX `fk_pgto_desb_desbravador1_idx` (`CD_DESB` ASC),
   CONSTRAINT `fk_pgto_evento_projeto1`
-    FOREIGN KEY (`CD_PROJETO`)
+    FOREIGN KEY (`CD_EVENTO`)
     REFERENCES `pedras`.`evento` (`CD_EVENTO`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_pgto_desb_desbravador1`
+    FOREIGN KEY (`CD_DESB`)
+    REFERENCES `pedras`.`desbravador` (`CD_DESB`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -358,13 +363,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pedras`.`pagamento` (
   `CD_DESB` INT UNSIGNED NOT NULL,
-  `CD_PROJETO` INT UNSIGNED NOT NULL,
+  `CD_EVENTO` INT UNSIGNED NOT NULL,
   `NR_VALOR` DECIMAL(10,2) NULL,
-  `DT_PAGTO` DATE NULL,
-  INDEX `fk_pagamento_projeto1_idx` (`CD_PROJETO` ASC),
+  `DT_PGTO` DATE NULL,
+  INDEX `fk_pagamento_projeto1_idx` (`CD_EVENTO` ASC),
   INDEX `fk_pagamento_desbravador1_idx` (`CD_DESB` ASC),
   CONSTRAINT `fk_pagamento_projeto1`
-    FOREIGN KEY (`CD_PROJETO`)
+    FOREIGN KEY (`CD_EVENTO`)
     REFERENCES `pedras`.`evento` (`CD_EVENTO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -480,7 +485,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `pedras`;
-INSERT INTO `pedras`.`nivel` (`CD_NIVEL`, `DS_NIVEL`) VALUES (null, 'Administrador');
+INSERT INTO `pedras`.`nivel` (`CD_NIVEL`, `DS_NIVEL`) VALUES (NULL, 'Administrador');
 
 COMMIT;
 
@@ -490,7 +495,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `pedras`;
-INSERT INTO `pedras`.`usuario` (`CD_USUARIO`, `DS_LOGIN`, `NM_USUARIO`, `DS_SENHA`, `SN_ATIVO`, `CD_NIVEL`, `SN_SENHA_ATUAL`) VALUES (null, 'admin', 'Administrador', '25d55ad283aa400af464c76d713c07ad', 'S', 1, 'S');
+INSERT INTO `pedras`.`usuario` (`CD_USUARIO`, `DS_LOGIN`, `NM_USUARIO`, `DS_SENHA`, `SN_ATIVO`, `CD_NIVEL`, `SN_SENHA_ATUAL`) VALUES (NULL, 'admin', 'Administrador', '25d55ad283aa400af464c76d713c07ad', 'S', 1, 'S');
 
 COMMIT;
 
