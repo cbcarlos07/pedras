@@ -158,6 +158,7 @@ ENGINE = InnoDB;
 -- Table `pedras`.`medico`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pedras`.`medico` (
+  `CD_DESB` INT UNSIGNED NOT NULL,
   `TIPO_SANGUINEO` VARCHAR(3) NULL,
   `FATOR_RH` CHAR(1) NULL,
   `SN_VAC_CONT_TET` CHAR(1) NULL,
@@ -165,10 +166,9 @@ CREATE TABLE IF NOT EXISTS `pedras`.`medico` (
   `DS_DOENCA` VARCHAR(255) NULL,
   `DS_ALERGIA` VARCHAR(255) NULL,
   `ACIDENTE_AVISAR` VARCHAR(255) NULL,
-  `desbravador_CD_DESB` INT UNSIGNED NOT NULL,
-  INDEX `fk_medico_desbravador1_idx` (`desbravador_CD_DESB` ASC),
+  INDEX `fk_medico_desbravador1_idx` (`CD_DESB` ASC),
   CONSTRAINT `fk_medico_desbravador1`
-    FOREIGN KEY (`desbravador_CD_DESB`)
+    FOREIGN KEY (`CD_DESB`)
     REFERENCES `pedras`.`desbravador` (`CD_DESB`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -444,7 +444,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pedras`.`nivel` (
   `CD_NIVEL` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `DS_NIVEL` VARCHAR(45) NULL,
+  `DS_NIVEL` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`CD_NIVEL`))
 ENGINE = InnoDB;
 
@@ -462,6 +462,7 @@ CREATE TABLE IF NOT EXISTS `pedras`.`usuario` (
   `SN_SENHA_ATUAL` CHAR(1) NULL,
   PRIMARY KEY (`CD_USUARIO`),
   INDEX `fk_usuario_nivel1_idx` (`CD_NIVEL` ASC),
+  UNIQUE INDEX `DS_LOGIN_UNIQUE` (`DS_LOGIN` ASC),
   CONSTRAINT `fk_usuario_nivel1`
     FOREIGN KEY (`CD_NIVEL`)
     REFERENCES `pedras`.`nivel` (`CD_NIVEL`)
@@ -473,3 +474,23 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `pedras`.`nivel`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `pedras`;
+INSERT INTO `pedras`.`nivel` (`CD_NIVEL`, `DS_NIVEL`) VALUES (null, 'Administrador');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `pedras`.`usuario`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `pedras`;
+INSERT INTO `pedras`.`usuario` (`CD_USUARIO`, `DS_LOGIN`, `NM_USUARIO`, `DS_SENHA`, `SN_ATIVO`, `CD_NIVEL`, `SN_SENHA_ATUAL`) VALUES (null, 'admin', 'Administrador', '25d55ad283aa400af464c76d713c07ad', 'S', 1, 'S');
+
+COMMIT;
+
