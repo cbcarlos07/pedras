@@ -8,44 +8,45 @@
  */
 class curso
 {
-    private $cdLideranca;
-    private $dsLideranca;
+    private $cdCurso;
+    private $dsCurso;
 
     /**
      * @return mixed
      */
-    public function getCdLideranca()
+    public function getCdCurso()
     {
-        return $this->cdLideranca;
+        return $this->cdCurso;
     }
 
     /**
-     * @param mixed $cdLideranca
+     * @param mixed $cdCurso
      * @return curso
      */
-    public function setCdLideranca($cdLideranca)
+    public function setCdCurso($cdCurso)
     {
-        $this->cdLideranca = $cdLideranca;
+        $this->cdCurso = $cdCurso;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getDsLideranca()
+    public function getDsCurso()
     {
-        return $this->dsLideranca;
+        return $this->dsCurso;
     }
 
     /**
-     * @param mixed $dsLideranca
+     * @param mixed $dsCurso
      * @return curso
      */
-    public function setDsLideranca($dsLideranca)
+    public function setDsCurso($dsCurso)
     {
-        $this->dsLideranca = $dsLideranca;
+        $this->dsCurso = $dsCurso;
         return $this;
     }
+
 
 
 }
