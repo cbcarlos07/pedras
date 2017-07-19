@@ -49,7 +49,7 @@ class classesList
             return null;
         }
     }
-    
+
 
     public function addClasses(Classes $_classes_in) {
         $this->setClassesCount($this->getClassesCount() + 1);
