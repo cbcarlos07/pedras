@@ -50,12 +50,12 @@ class desbravadorList
         }
     }
 
-    public function addDesbravador(Desbravador $_desbravador_in) {
+    public function addDesbravador(desbravador $_desbravador_in) {
         $this->setDesbravadorCount($this->getDesbravadorCount() + 1);
         $this->_desbravador[$this->getDesbravadorCount()] = $_desbravador_in;
         return $this->getDesbravadorCount();
     }
-    public function removeDesbravador(Desbravador $_desbravador_in) {
+    public function removeDesbravador(desbravador $_desbravador_in) {
         $counter = 0;
         while (++$counter <= $this->getDesbravadorCount()) {
             if ($_desbravador_in->getAuthorAndTitle() ==

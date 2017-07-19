@@ -50,12 +50,12 @@ class desb_unidadeList
         }
     }
 
-    public function addDesb_unidade(Desb_unidade $_desb_unidade_in) {
+    public function addDesb_unidade(desb_unidade $_desb_unidade_in) {
         $this->setDesb_unidadeCount($this->getDesb_unidadeCount() + 1);
         $this->_desb_unidade[$this->getDesb_unidadeCount()] = $_desb_unidade_in;
         return $this->getDesb_unidadeCount();
     }
-    public function removeDesb_unidade(Desb_unidade $_desb_unidade_in) {
+    public function removeDesb_unidade(desb_unidade $_desb_unidade_in) {
         $counter = 0;
         while (++$counter <= $this->getDesb_unidadeCount()) {
             if ($_desb_unidade_in->getAuthorAndTitle() ==

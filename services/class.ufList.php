@@ -50,12 +50,12 @@ class ufList
         }
     }
 
-    public function addUf(Uf $_uf_in) {
+    public function addUf(uf $_uf_in) {
         $this->setUfCount($this->getUfCount() + 1);
         $this->_uf[$this->getUfCount()] = $_uf_in;
         return $this->getUfCount();
     }
-    public function removeUf(Uf $_uf_in) {
+    public function removeUf(uf $_uf_in) {
         $counter = 0;
         while (++$counter <= $this->getUfCount()) {
             if ($_uf_in->getAuthorAndTitle() ==

@@ -50,12 +50,12 @@ class pgto_desbList
         }
     }
 
-    public function addPgto_desb(Pgto_desb $_pgto_desb_in) {
+    public function addPgto_desb(pgto_desb $_pgto_desb_in) {
         $this->setPgto_desbCount($this->getPgto_desbCount() + 1);
         $this->_pgto_desb[$this->getPgto_desbCount()] = $_pgto_desb_in;
         return $this->getPgto_desbCount();
     }
-    public function removePgto_desb(Pgto_desb $_pgto_desb_in) {
+    public function removePgto_desb(pgto_desb $_pgto_desb_in) {
         $counter = 0;
         while (++$counter <= $this->getPgto_desbCount()) {
             if ($_pgto_desb_in->getAuthorAndTitle() ==

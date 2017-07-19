@@ -50,12 +50,12 @@ class filiacaoList
         }
     }
 
-    public function addFiliacao(Filiacao $_filiacao_in) {
+    public function addFiliacao(filiacao $_filiacao_in) {
         $this->setFiliacaoCount($this->getFiliacaoCount() + 1);
         $this->_filiacao[$this->getFiliacaoCount()] = $_filiacao_in;
         return $this->getFiliacaoCount();
     }
-    public function removeFiliacao(Filiacao $_filiacao_in) {
+    public function removeFiliacao(filiacao $_filiacao_in) {
         $counter = 0;
         while (++$counter <= $this->getFiliacaoCount()) {
             if ($_filiacao_in->getAuthorAndTitle() ==

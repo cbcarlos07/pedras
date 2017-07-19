@@ -50,12 +50,12 @@ class fone_desbList
         }
     }
 
-    public function addFone_desb(Fone_desb $_fone_desb_in) {
+    public function addFone_desb(fone_desb $_fone_desb_in) {
         $this->setFone_desbCount($this->getFone_desbCount() + 1);
         $this->_fone_desb[$this->getFone_desbCount()] = $_fone_desb_in;
         return $this->getFone_desbCount();
     }
-    public function removeFone_desb(Fone_desb $_fone_desb_in) {
+    public function removeFone_desb(fone_desb $_fone_desb_in) {
         $counter = 0;
         while (++$counter <= $this->getFone_desbCount()) {
             if ($_fone_desb_in->getAuthorAndTitle() ==

@@ -50,12 +50,12 @@ class cidadeList
         }
     }
 
-    public function addCidade(Cidade $_cidade_in) {
+    public function addCidade(cidade $_cidade_in) {
         $this->setCidadeCount($this->getCidadeCount() + 1);
         $this->_cidade[$this->getCidadeCount()] = $_cidade_in;
         return $this->getCidadeCount();
     }
-    public function removeCidade(Cidade $_cidade_in) {
+    public function removeCidade(cidade $_cidade_in) {
         $counter = 0;
         while (++$counter <= $this->getCidadeCount()) {
             if ($_cidade_in->getAuthorAndTitle() ==

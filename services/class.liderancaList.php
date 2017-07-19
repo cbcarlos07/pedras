@@ -50,12 +50,12 @@ class liderancaList
         }
     }
 
-    public function addLideranca(Lideranca $_lideranca_in) {
+    public function addLideranca(lideranca $_lideranca_in) {
         $this->setLiderancaCount($this->getLiderancaCount() + 1);
         $this->_lideranca[$this->getLiderancaCount()] = $_lideranca_in;
         return $this->getLiderancaCount();
     }
-    public function removeLideranca(Lideranca $_lideranca_in) {
+    public function removeLideranca(lideranca $_lideranca_in) {
         $counter = 0;
         while (++$counter <= $this->getLiderancaCount()) {
             if ($_lideranca_in->getAuthorAndTitle() ==

@@ -50,12 +50,12 @@ class unidadeList
         }
     }
 
-    public function addUnidade(Unidade $_unidade_in) {
+    public function addUnidade(unidade $_unidade_in) {
         $this->setUnidadeCount($this->getUnidadeCount() + 1);
         $this->_unidade[$this->getUnidadeCount()] = $_unidade_in;
         return $this->getUnidadeCount();
     }
-    public function removeUnidade(Unidade $_unidade_in) {
+    public function removeUnidade(unidade $_unidade_in) {
         $counter = 0;
         while (++$counter <= $this->getUnidadeCount()) {
             if ($_unidade_in->getAuthorAndTitle() ==

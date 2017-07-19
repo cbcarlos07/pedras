@@ -50,12 +50,12 @@ class medicoList
         }
     }
 
-    public function addMedico(Medico $_medico_in) {
+    public function addMedico(medico $_medico_in) {
         $this->setMedicoCount($this->getMedicoCount() + 1);
         $this->_medico[$this->getMedicoCount()] = $_medico_in;
         return $this->getMedicoCount();
     }
-    public function removeMedico(Medico $_medico_in) {
+    public function removeMedico(medico $_medico_in) {
         $counter = 0;
         while (++$counter <= $this->getMedicoCount()) {
             if ($_medico_in->getAuthorAndTitle() ==

@@ -50,12 +50,12 @@ class fone_respList
         }
     }
 
-    public function addFone_resp(Fone_resp $_fone_resp_in) {
+    public function addFone_resp(fone_resp $_fone_resp_in) {
         $this->setFone_respCount($this->getFone_respCount() + 1);
         $this->_fone_resp[$this->getFone_respCount()] = $_fone_resp_in;
         return $this->getFone_respCount();
     }
-    public function removeFone_resp(Fone_resp $_fone_resp_in) {
+    public function removeFone_resp(fone_resp $_fone_resp_in) {
         $counter = 0;
         while (++$counter <= $this->getFone_respCount()) {
             if ($_fone_resp_in->getAuthorAndTitle() ==

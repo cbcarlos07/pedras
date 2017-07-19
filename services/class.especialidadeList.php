@@ -50,12 +50,12 @@ class especialidadeList
         }
     }
 
-    public function addEspecialidade(Especialidade $_especialidade_in) {
+    public function addEspecialidade(especialidade $_especialidade_in) {
         $this->setEspecialidadeCount($this->getEspecialidadeCount() + 1);
         $this->_especialidade[$this->getEspecialidadeCount()] = $_especialidade_in;
         return $this->getEspecialidadeCount();
     }
-    public function removeEspecialidade(Especialidade $_especialidade_in) {
+    public function removeEspecialidade(especialidade $_especialidade_in) {
         $counter = 0;
         while (++$counter <= $this->getEspecialidadeCount()) {
             if ($_especialidade_in->getAuthorAndTitle() ==

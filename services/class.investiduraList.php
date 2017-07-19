@@ -50,12 +50,12 @@ class investiduraList
         }
     }
 
-    public function addCargo(Cargo $_investidura_in) {
+    public function addCargo(cargo $_investidura_in) {
         $this->setCargoCount($this->getCargoCount() + 1);
         $this->_investidura[$this->getCargoCount()] = $_investidura_in;
         return $this->getCargoCount();
     }
-    public function removeCargo(Cargo $_investidura_in) {
+    public function removeCargo(cargo $_investidura_in) {
         $counter = 0;
         while (++$counter <= $this->getCargoCount()) {
             if ($_investidura_in->getAuthorAndTitle() ==

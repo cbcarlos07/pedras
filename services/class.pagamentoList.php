@@ -50,12 +50,12 @@ class pagamentoList
         }
     }
 
-    public function addPagamento(Pagamento $_pagamento_in) {
+    public function addPagamento(pagamento $_pagamento_in) {
         $this->setPagamentoCount($this->getPagamentoCount() + 1);
         $this->_pagamento[$this->getPagamentoCount()] = $_pagamento_in;
         return $this->getPagamentoCount();
     }
-    public function removePagamento(Pagamento $_pagamento_in) {
+    public function removePagamento(pagamento $_pagamento_in) {
         $counter = 0;
         while (++$counter <= $this->getPagamentoCount()) {
             if ($_pagamento_in->getAuthorAndTitle() ==

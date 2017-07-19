@@ -50,12 +50,12 @@ class religiaoList
         }
     }
 
-    public function addReligiao(Religiao $_religiao_in) {
+    public function addReligiao(religiao $_religiao_in) {
         $this->setReligiaoCount($this->getReligiaoCount() + 1);
         $this->_religiao[$this->getReligiaoCount()] = $_religiao_in;
         return $this->getReligiaoCount();
     }
-    public function removeReligiao(Religiao $_religiao_in) {
+    public function removeReligiao(religiao $_religiao_in) {
         $counter = 0;
         while (++$counter <= $this->getReligiaoCount()) {
             if ($_religiao_in->getAuthorAndTitle() ==

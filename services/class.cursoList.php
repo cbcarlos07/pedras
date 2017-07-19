@@ -50,12 +50,12 @@ class cursoList
         }
     }
 
-    public function addCurso(Curso $_curso_in) {
+    public function addCurso(curso $_curso_in) {
         $this->setCursoCount($this->getCursoCount() + 1);
         $this->_curso[$this->getCursoCount()] = $_curso_in;
         return $this->getCursoCount();
     }
-    public function removeCurso(Curso $_curso_in) {
+    public function removeCurso(curso $_curso_in) {
         $counter = 0;
         while (++$counter <= $this->getCursoCount()) {
             if ($_curso_in->getAuthorAndTitle() ==

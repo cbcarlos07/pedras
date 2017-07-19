@@ -50,12 +50,12 @@ class nivelList
         }
     }
 
-    public function addNivel(Nivel $_nivel_in) {
+    public function addNivel(nivel $_nivel_in) {
         $this->setNivelCount($this->getNivelCount() + 1);
         $this->_nivel[$this->getNivelCount()] = $_nivel_in;
         return $this->getNivelCount();
     }
-    public function removeNivel(Nivel $_nivel_in) {
+    public function removeNivel(nivel $_nivel_in) {
         $counter = 0;
         while (++$counter <= $this->getNivelCount()) {
             if ($_nivel_in->getAuthorAndTitle() ==

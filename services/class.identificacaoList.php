@@ -50,12 +50,12 @@ class identificacaoList
         }
     }
 
-    public function addIdentificacao(Identificacao $_identificacao_in) {
+    public function addIdentificacao(identificacao $_identificacao_in) {
         $this->setIdentificacaoCount($this->getIdentificacaoCount() + 1);
         $this->_identificacao[$this->getIdentificacaoCount()] = $_identificacao_in;
         return $this->getIdentificacaoCount();
     }
-    public function removeIdentificacao(Identificacao $_identificacao_in) {
+    public function removeIdentificacao(identificacao $_identificacao_in) {
         $counter = 0;
         while (++$counter <= $this->getIdentificacaoCount()) {
             if ($_identificacao_in->getAuthorAndTitle() ==

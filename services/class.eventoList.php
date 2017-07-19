@@ -50,12 +50,12 @@ class eventoList
         }
     }
 
-    public function addEvento(Evento $_evento_in) {
+    public function addEvento(evento $_evento_in) {
         $this->setEventoCount($this->getEventoCount() + 1);
         $this->_evento[$this->getEventoCount()] = $_evento_in;
         return $this->getEventoCount();
     }
-    public function removeEvento(Evento $_evento_in) {
+    public function removeEvento(evento $_evento_in) {
         $counter = 0;
         while (++$counter <= $this->getEventoCount()) {
             if ($_evento_in->getAuthorAndTitle() ==

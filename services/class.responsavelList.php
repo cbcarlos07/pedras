@@ -50,12 +50,12 @@ class responsavelList
         }
     }
 
-    public function addResponsavel(Responsavel $_responsavel_in) {
+    public function addResponsavel(responsavel $_responsavel_in) {
         $this->setResponsavelCount($this->getResponsavelCount() + 1);
         $this->_responsavel[$this->getResponsavelCount()] = $_responsavel_in;
         return $this->getResponsavelCount();
     }
-    public function removeResponsavel(Responsavel $_responsavel_in) {
+    public function removeResponsavel(responsavel $_responsavel_in) {
         $counter = 0;
         while (++$counter <= $this->getResponsavelCount()) {
             if ($_responsavel_in->getAuthorAndTitle() ==

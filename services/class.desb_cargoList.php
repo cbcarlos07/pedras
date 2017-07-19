@@ -50,12 +50,12 @@ class desb_cargoList
         }
     }
 
-    public function addDesb_cargo(Desb_cargo $_desb_cargo_in) {
+    public function addDesb_cargo(desb_cargo $_desb_cargo_in) {
         $this->setDesb_cargoCount($this->getDesb_cargoCount() + 1);
         $this->_desb_cargo[$this->getDesb_cargoCount()] = $_desb_cargo_in;
         return $this->getDesb_cargoCount();
     }
-    public function removeDesb_cargo(Desb_cargo $_desb_cargo_in) {
+    public function removeDesb_cargo(desb_cargo $_desb_cargo_in) {
         $counter = 0;
         while (++$counter <= $this->getDesb_cargoCount()) {
             if ($_desb_cargo_in->getAuthorAndTitle() ==

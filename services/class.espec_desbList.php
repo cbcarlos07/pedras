@@ -50,12 +50,12 @@ class espec_desbList
         }
     }
 
-    public function addEspec_desb(Espec_desb $_espec_desb_in) {
+    public function addEspec_desb(espec_desb $_espec_desb_in) {
         $this->setEspec_desbCount($this->getEspec_desbCount() + 1);
         $this->_espec_desb[$this->getEspec_desbCount()] = $_espec_desb_in;
         return $this->getEspec_desbCount();
     }
-    public function removeEspec_desb(Espec_desb $_espec_desb_in) {
+    public function removeEspec_desb(espec_desb $_espec_desb_in) {
         $counter = 0;
         while (++$counter <= $this->getEspec_desbCount()) {
             if ($_espec_desb_in->getAuthorAndTitle() ==

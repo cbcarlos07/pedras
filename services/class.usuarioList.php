@@ -50,12 +50,12 @@ class usuarioList
         }
     }
 
-    public function addUsuario(Usuario $_usuario_in) {
+    public function addUsuario(usuario $_usuario_in) {
         $this->setUsuarioCount($this->getUsuarioCount() + 1);
         $this->_usuario[$this->getUsuarioCount()] = $_usuario_in;
         return $this->getUsuarioCount();
     }
-    public function removeUsuario(Usuario $_usuario_in) {
+    public function removeUsuario(usuario $_usuario_in) {
         $counter = 0;
         while (++$counter <= $this->getUsuarioCount()) {
             if ($_usuario_in->getAuthorAndTitle() ==
