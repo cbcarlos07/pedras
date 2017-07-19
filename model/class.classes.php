@@ -6,7 +6,7 @@
  * Date: 16/07/17
  * Time: 16:20
  */
-class classe
+class classes
 {
     private $cdClasse;
     private $dsClasse;
@@ -22,7 +22,7 @@ class classe
 
     /**
      * @param mixed $cdClasse
-     * @return classe
+     * @return classes
      */
     public function setCdClasse($cdClasse)
     {
@@ -40,7 +40,7 @@ class classe
 
     /**
      * @param mixed $dsClasse
-     * @return classe
+     * @return classes
      */
     public function setDsClasse($dsClasse)
     {
@@ -58,7 +58,7 @@ class classe
 
     /**
      * @param mixed $tpClasse
-     * @return classe
+     * @return classes
      */
     public function setTpClasse($tpClasse)
     {
