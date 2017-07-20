@@ -11,6 +11,7 @@ class desbravador
     private $cdDesb;
     private $nmDesbravador;
     private $dsSexo;
+    private $dtNascimento;
     private $cidade;
     private $snBatizado;
     private $religiao;
@@ -20,6 +21,25 @@ class desbravador
     private $nrCep;
     private $dsEmail;
     private $snAtivo;
+
+    /**
+     * @return mixed
+     */
+    public function getDtNascimento()
+    {
+        return $this->dtNascimento;
+    }
+
+    /**
+     * @param mixed $dtNascimento
+     * @return desbravador
+     */
+    public function setDtNascimento($dtNascimento)
+    {
+        $this->dtNascimento = $dtNascimento;
+        return $this;
+    }
+
 
     /**
      * @return mixed

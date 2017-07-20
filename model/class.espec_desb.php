@@ -24,7 +24,7 @@ class espec_desb
      * @param mixed $especialidade
      * @return espec_desb
      */
-    public function setEspecialidade($especialidade)
+    public function setEspecialidade( especialidade $especialidade)
     {
         $this->especialidade = $especialidade;
         return $this;
