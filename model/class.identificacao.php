@@ -16,6 +16,7 @@ class identificacao
  private $viveCom;
  private $dsOutroVive;
  private $doenca;
+ private $snAlergia;
  private $dsAlergia;
  private $snDoencaCoracao;
  private $dsDoencaCoracao;
@@ -36,6 +37,7 @@ class identificacao
  private $snFazTratDiabetes;
  private $dsFazTratDiabetes;
  private $snAlgumaCirurgia;
+ private $dsAlgumaCirurgia;
  private $snEsteveInternado;
  private $dsEsteveInternado;
  private $grupoSang;
@@ -45,6 +47,44 @@ class identificacao
  private $observacao;
  private $nmResponsavel;
  private $dtAssinatura;
+
+    /**
+     * @return mixed
+     */
+    public function getSnAlergia()
+    {
+        return $this->snAlergia;
+    }
+
+    /**
+     * @param mixed $snAlergia
+     * @return identificacao
+     */
+    public function setSnAlergia($snAlergia)
+    {
+        $this->snAlergia = $snAlergia;
+        return $this;
+    }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getDsAlgumaCirurgia()
+    {
+        return $this->dsAlgumaCirurgia;
+    }
+
+    /**
+     * @param mixed $dsAlgumaCirurgia
+     * @return identificacao
+     */
+    public function setDsAlgumaCirurgia($dsAlgumaCirurgia)
+    {
+        $this->dsAlgumaCirurgia = $dsAlgumaCirurgia;
+        return $this;
+    }
 
     /**
      * @return mixed
