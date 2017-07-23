@@ -9,26 +9,26 @@
 class investiduraListIterator
 {
     protected $investiduraList;
-    protected $currentCargo = 0;
+    protected $currentInvestidura = 0;
 
     public function __construct(investiduraList $investiduraList_in) {
         $this->investiduraList = $investiduraList_in;
     }
-    public function getCurrentCargo() {
-        if (($this->currentCargo > 0) &&
-            ($this->investiduraList->getCargoCount() >= $this->currentCargo)) {
-            return $this->investiduraList->getCargo($this->currentCargo);
+    public function getCurrentInvestidura() {
+        if (($this->currentInvestidura > 0) &&
+            ($this->investiduraList->getInvestiduraCount() >= $this->currentInvestidura)) {
+            return $this->investiduraList->getInvestidura($this->currentInvestidura);
         }
     }
-    public function getNextCargo() {
-        if ($this->hasNextCargo()) {
-            return $this->investiduraList->getCargo(++$this->currentCargo);
+    public function getNextInvestidura() {
+        if ($this->hasNextInvestidura()) {
+            return $this->investiduraList->getInvestidura(++$this->currentInvestidura);
         } else {
             return NULL;
         }
     }
-    public function hasNextCargo() {
-        if ($this->investiduraList->getInvestiduraCount() > $this->currentCargo) {
+    public function hasNextInvestidura() {
+        if ($this->investiduraList->getInvestiduraCount() > $this->currentInvestidura) {
             return TRUE;
         } else {
             return FALSE;
