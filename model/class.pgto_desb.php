@@ -8,8 +8,29 @@
  */
 class pgto_desb
 {
+  private $cdPgto;
   private $desbravador;
   private $evento;
+
+    /**
+     * @return mixed
+     */
+    public function getCdPgto()
+    {
+        return $this->cdPgto;
+    }
+
+    /**
+     * @param mixed $cdPgto
+     * @return pgto_desb
+     */
+    public function setCdPgto($cdPgto)
+    {
+        $this->cdPgto = $cdPgto;
+        return $this;
+    }
+
+
 
     /**
      * @return mixed
