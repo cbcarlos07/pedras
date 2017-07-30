@@ -127,7 +127,7 @@ class medicoDao
         return $obj;
     }
 
-    public function getListAnotacao ( $medico ){
+    public function getListMedico ( $medico ){
         require_once "class.connection.php";
         require_once "../model/class.medico.php";
         require_once "../services/class.medicoList.php";

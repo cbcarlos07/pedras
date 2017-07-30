@@ -6,7 +6,7 @@
  * Date: 16/07/17
  * Time: 16:20
  */
-class classes
+class classe
 {
     private $cdClasse;
     private $dsClasse;

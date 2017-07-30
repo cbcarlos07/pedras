@@ -75,7 +75,7 @@ class pgto_desbDao
         return $retorno;
     }
 
-    public function getNivel ( $pgto_desb ){
+    public function getPgto_desb ( $pgto_desb ){
         require_once "class.connection.php";
         require_once "../model/class.pgto_desb.php";
         $obj = null;
@@ -102,7 +102,7 @@ class pgto_desbDao
         return $obj;
     }
 
-    public function getListNivel (  ){
+    public function getListPgto_desb (  ){
         require_once "class.connection.php";
         require_once "../model/class.pgto_desb.php";
         require_once "../services/class.pgto_desbList.php";

@@ -6,23 +6,21 @@
  * Date: 16/07/17
  * Time: 14:55
  */
-class despesasDao
+class projetoDao
 {
     private $connection =  null;
-  public function insert( despesas $despesas ){
+  public function insert( projeto $projeto ){
          require_once "class.connection.php";
          $retorno = false;
          $this->connection = new connection();
          $this->connection->beginTransaction();
          try{
-            $query = "INSERT INTO despesas 
-                        (CD_PGTO, NR_VALOR, DS_DESPESA) 
-                        VALUES 
-                        (:CD_PGTO, :NR_VALOR, :DS_DESPESA)";
+            $query = "INSERT INTO projeto 
+                      (DS_PROJETO, OBS_PROJETO) 
+                      VALUES (:projeto, :observacao)";
             $stmt = $this->connection->prepare( $query );
-            $stmt->bindValue( ":CD_PGTO", $despesas->getPgtoDesb()->getCdPgto(), PDO::PARAM_INT);
-            $stmt->bindValue( ":NR_VALOR", $despesas->getNrValor(), PDO::PARAM_STR);
-            $stmt->bindValue( ":DS_DESPESA", $despesas->getDsDespesa(), PDO::PARAM_STR);
+            $stmt->bindValue( ":projeto", $projeto->getDsProjeto(), PDO::PARAM_STR );
+            $stmt->bindValue( ":observacao", $projeto->getObsProjeto(), PDO::PARAM_STR );
             $stmt->execute();
             $this->connection->commit();
             $retorno = true;
@@ -33,22 +31,20 @@ class despesasDao
          return $retorno;
   }
 
-    public function update( despesas $despesas ){
+    public function update( projeto $projeto ){
         require_once "class.connection.php";
         $retorno = false;
         $this->connection = new connection();
         $this->connection->beginTransaction();
         try{
-            $query = "UPDATE despesas SET 
-                      CD_PGTO    = :CD_PGTO
-                     ,NR_VALOR   = :NR_VALOR
-                     ,DS_DESPESA = :DS_DESPESA 
-                     WHERE CD_PGTO = :codigo";
+            $query = "UPDATE projeto SET 
+                      DS_PROJETO = :projeto
+                     ,OBS_PROJETO = :observacao 
+                      WHERE CD_PROJETO = :codigo";
             $stmt = $this->connection->prepare( $query );
-            $stmt->bindValue( ":CD_PGTO", $despesas->getPgtoDesb()->getCdPgto(), PDO::PARAM_INT);
-            $stmt->bindValue( ":NR_VALOR", $despesas->getNrValor(), PDO::PARAM_STR);
-            $stmt->bindValue( ":DS_DESPESA", $despesas->getDsDespesa(), PDO::PARAM_STR);
-            $stmt->bindValue( ":codigo", $despesas->getPgtoDesb()->getCdPgto(), PDO::PARAM_INT);
+            $stmt->bindValue( ":projeto", $projeto->getDsProjeto(), PDO::PARAM_STR );
+            $stmt->bindValue( ":observacao", $projeto->getObsProjeto(), PDO::PARAM_STR );
+            $stmt->bindValue( ":codigo", $projeto->getCdProjeto(), PDO::PARAM_INT );
             $stmt->execute();
             $this->connection->commit();
             $retorno = true;
@@ -59,15 +55,15 @@ class despesasDao
         return $retorno;
     }
 
-    public function delete( $despesas ){
+    public function delete( $projeto ){
         require_once "class.connection.php";
         $retorno = false;
         $this->connection = new connection();
         $this->connection->beginTransaction();
         try{
-            $query = "DELETE FROM despesas WHERE CD_PGTO = :despesas";
+            $query = "DELETE FROM projeto WHERE CD_PROJETO = :projeto";
             $stmt = $this->connection->prepare( $query );
-            $stmt->bindValue( ":despesas", $despesas, PDO::PARAM_INT );
+            $stmt->bindValue( ":projeto", $projeto, PDO::PARAM_INT );
             $stmt->execute();
             $this->connection->commit();
             $retorno = true;
@@ -78,23 +74,22 @@ class despesasDao
         return $retorno;
     }
 
-    public function getDespesa ( $despesas ){
+    public function getProjeto ( $projeto ){
         require_once "class.connection.php";
-        require_once "../model/class.despesas.php";
+        require_once "../model/class.projeto.php";
         $obj = null;
         $this->connection = new connection();
 
         try{
-            $query = "SELECT * FROM despesas WHERE CD_PGTO = :despesas";
+            $query = "SELECT * FROM projeto WHERE CD_PROJETO = :projeto";
             $stmt = $this->connection->prepare( $query );
-            $stmt->bindValue( ":despesas", $despesas, PDO::PARAM_INT );
+            $stmt->bindValue( ":projeto", $projeto, PDO::PARAM_INT );
             $stmt->execute();
             if( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ){
-                $obj = new despesas();
-                $obj->setPgtoDesb( new pgto_desb() );
-                $obj->getPgtoDesb()->setCdPgto( $row['CD_PGTO'] );
-                $obj->setNrValor( $row['NR_VALOR'] );
-                $obj->setDsDespesa( $row['DS_DESPESA'] );
+                $obj = new projeto();
+                $obj->setCdProjeto( $row['CD_PROJETO'] );
+                $obj->setDsProjeto( $row['DS_PROJETO'] );
+                $obj->setObsProjeto( $row['OBS_PROJETO'] );
 
             }
 
@@ -105,28 +100,30 @@ class despesasDao
         return $obj;
     }
 
-    public function getListDespesa (  ){
+    public function getListProjeto ( $projeto ){
         require_once "class.connection.php";
-        require_once "../model/class.despesas.php";
-        require_once "../services/class.despesasList.php";
-        $retorno = new despesasList();
+        require_once "../model/class.projeto.php";
+        require_once "../services/class.projetoList.php";
+        $retorno = new projetoList();
         $this->connection = new connection();
 
         try{
-
-                $query = "SELECT * FROM despesas";
+            if( $projeto == "" ){
+                $query = "SELECT * FROM projeto";
                 $stmt = $this->connection->prepare( $query );
-
-
+            }else{
+                $query = "SELECT * FROM projeto WHERE DS_PROJETO LIKE :projeto";
+                $stmt = $this->connection->prepare( $query );
+                $stmt->bindValue( ":projeto", "%$projeto%", PDO::PARAM_STR );
+            }
 
             $stmt->execute();
             while( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ){
-                $obj = new despesas();
-                $obj->setPgtoDesb( new pgto_desb() );
-                $obj->getPgtoDesb()->setCdPgto( $row['CD_PGTO'] );
-                $obj->setNrValor( $row['NR_VALOR'] );
-                $obj->setDsDespesa( $row['DS_DESPESA'] );
-                $retorno->addDespesas( $obj );
+                $obj = new projeto();
+                $obj->setCdProjeto( $row['CD_PROJETO'] );
+                $obj->setDsProjeto( $row['DS_PROJETO'] );
+                $obj->setObsProjeto( $row['OBS_PROJETO'] );
+                $retorno->addProjeto( $obj );
             }
 
 

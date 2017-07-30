@@ -67,7 +67,7 @@ class cursoDao
         return $retorno;
     }
 
-    public function getCargo ( $curso ){
+    public function getCurso ( $curso ){
         require_once "class.connection.php";
         require_once "../model/class.curso.php";
         $retorno = null;
@@ -92,7 +92,7 @@ class cursoDao
         return $retorno;
     }
 
-    public function getListCargo ( $curso ){
+    public function getListCurso ( $curso ){
         require_once "class.connection.php";
         require_once "../model/class.curso.php";
         require_once "../services/class.cursoList.php";

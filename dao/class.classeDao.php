@@ -6,16 +6,16 @@
  * Date: 16/07/17
  * Time: 14:55
  */
-class classesDao
+class classeDao
 {
     private $connection =  null;
-  public function insert( classes $classe ){
+  public function insert( classe $classe ){
          require_once "class.connection.php";
          $retorno = false;
          $this->connection = new connection();
          $this->connection->beginTransaction();
          try{
-            $query = "INSERT INTO classes (DS_CLASSE, TP_CLASSE) VALUES (:classe, :tipo)";
+            $query = "INSERT INTO classe (DS_CLASSE, TP_CLASSE) VALUES (:classe, :tipo)";
             $stmt = $this->connection->prepare( $query );
             $stmt->bindValue( ":classe", $classe->getDsClasse(), PDO::PARAM_STR );
             $stmt->bindValue( ":tipo", $classe->getTpClasse(), PDO::PARAM_STR );
@@ -29,13 +29,13 @@ class classesDao
          return $retorno;
   }
 
-    public function update( classes $classe ){
+    public function update( classe $classe ){
         require_once "class.connection.php";
         $retorno = false;
         $this->connection = new connection();
         $this->connection->beginTransaction();
         try{
-            $query = "UPDATE classes SET DS_CLASSE = :classe, TP_CLASSE = :tipo WHERE CD_CLASSE = :codigo";
+            $query = "UPDATE classe SET DS_CLASSE = :classe, TP_CLASSE = :tipo WHERE CD_CLASSE = :codigo";
             $stmt = $this->connection->prepare( $query );
             $stmt->bindValue( ":classe", $classe->getDsClasse(), PDO::PARAM_STR );
             $stmt->bindValue( ":tipo", $classe->getTpClasse(), PDO::PARAM_STR );
@@ -56,7 +56,7 @@ class classesDao
         $this->connection = new connection();
         $this->connection->beginTransaction();
         try{
-            $query = "DELETE FROM classes WHERE CD_CLASSE = :classe";
+            $query = "DELETE FROM classe WHERE CD_CLASSE = :classe";
             $stmt = $this->connection->prepare( $query );
             $stmt->bindValue( ":classe", $classe, PDO::PARAM_INT );
             $stmt->execute();
@@ -69,20 +69,20 @@ class classesDao
         return $retorno;
     }
 
-    public function getUf ( $classe ){
+    public function getClasse ( $classe ){
         require_once "class.connection.php";
-        require_once "../model/class.classes.php";
+        require_once "../model/class.classe.php";
         require_once "../model/class.uf.php";
         $retorno = null;
         $this->connection = new connection();
 
         try{
-            $query = "SELECT * FROM classes WHERE CD_CLASSE = :classe";
+            $query = "SELECT * FROM classe WHERE CD_CLASSE = :classe";
             $stmt = $this->connection->prepare( $query );
             $stmt->bindValue( ":classe", $classe, PDO::PARAM_INT );
             $stmt->execute();
             if( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ){
-                $retorno = new classes();
+                $retorno = new classe();
                 $retorno->setCdClasse( $row['CD_CLASSE'] );
                 $retorno->setDsClasse( $row['DS_CLASSE'] );
                 $retorno->setTpClasse( $row['TP_CLASSE'] );
@@ -97,26 +97,26 @@ class classesDao
         return $retorno;
     }
 
-    public function getListUf ( $classe ){
+    public function getListClasse ( $classe ){
         require_once "class.connection.php";
-        require_once "../model/class.classes.php";
-        require_once "../services/class.classesList.php";
-        $retorno = new classesList();
+        require_once "../model/class.classe.php";
+        require_once "../services/class.classeList.php";
+        $retorno = new classeList();
         $this->connection = new connection();
 
         try{
             if( $classe == "" ){
-                $query = "SELECT * FROM classes";
+                $query = "SELECT * FROM classe";
                 $stmt = $this->connection->prepare( $query );
             }else{
-                $query = "SELECT * FROM classes WHERE DS_CLASSE LIKE :classe";
+                $query = "SELECT * FROM classe WHERE DS_CLASSE LIKE :classe";
                 $stmt = $this->connection->prepare( $query );
                 $stmt->bindValue( ":classe", "%$classe%", PDO::PARAM_STR );
             }
 
             $stmt->execute();
             while( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ){
-                $level = new classes();
+                $level = new classe();
                 $level->setCdClasse( $row['CD_CLASSE'] );
                 $level->setDsClasse( $row['DS_CLASSE'] );
                 $level->setTpClasse( $row['TP_CLASSE'] );

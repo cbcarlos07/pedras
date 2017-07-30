@@ -97,7 +97,7 @@ class desb_unidadeDao
         return $retorno;
     }
 
-    public function getListCargo ( $desb_unidade ){
+    public function getListUnidade ( $desb_unidade ){
         require_once "class.connection.php";
         require_once "../model/class.desb_unidade.php";
         require_once "../services/class.desb_unidadeList.php";

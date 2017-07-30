@@ -101,7 +101,7 @@ class unidadeDao
         return $obj;
     }
 
-    public function getListUf ( $unidade ){
+    public function getListUnidade ( $unidade ){
         require_once "class.connection.php";
         require_once "../model/class.unidade.php";
         require_once "../services/class.unidadeList.php";

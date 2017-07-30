@@ -81,7 +81,7 @@ class pagamentoDao
         return $retorno;
     }
 
-    public function getNivel ( $pagamento ){
+    public function getPagamento ( $pagamento ){
         require_once "class.connection.php";
         require_once "../model/class.pagamento.php";
         $obj = null;
@@ -110,7 +110,7 @@ class pagamentoDao
         return $obj;
     }
 
-    public function getListNivel (  ){
+    public function getListPagamento (  ){
         require_once "class.connection.php";
         require_once "../model/class.pagamento.php";
         require_once "../services/class.pagamentoList.php";

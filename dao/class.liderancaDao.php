@@ -81,7 +81,7 @@ class liderancaDao
         return $retorno;
     }
 
-    public function getCurso ( $lideranca ){
+    public function getLideranca ( $lideranca ){
         require_once "class.connection.php";
         require_once "../model/class.lideranca.php";
         require_once "../model/class.desbravador.php";
@@ -112,7 +112,7 @@ class liderancaDao
         return $obj;
     }
 
-    public function getListCurso (  ){
+    public function getListLideranca (  ){
         require_once "class.connection.php";
         require_once "../model/class.lideranca.php";
         require_once "../model/class.curso.php";

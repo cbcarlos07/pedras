@@ -6,7 +6,7 @@
  * Date: 17/02/17
  * Time: 16:49
  */
-class classesList
+class classeList
 {
     private $_classes;
     private $_classesCount;
@@ -30,7 +30,7 @@ class classesList
 
     /**
      * @param mixed $classesCount
-     * @return ClassesList
+     * @return ClasseList
      */
     public function setClassesCount($newCount)
     {
@@ -51,12 +51,12 @@ class classesList
     }
 
 
-    public function addClasses(classes $_classes_in) {
+    public function addClasses(classe $_classes_in) {
         $this->setClassesCount($this->getClassesCount() + 1);
         $this->_classes[$this->getClassesCount()] = $_classes_in;
         return $this->getClassesCount();
     }
-    public function removeClasses(classes $_classes_in) {
+    public function removeClasses(classe $_classes_in) {
         $counter = 0;
         while (++$counter <= $this->getClassesCount()) {
             if ($_classes_in->getAuthorAndTitle() ==

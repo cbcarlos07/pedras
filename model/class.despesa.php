@@ -6,7 +6,7 @@
  * Date: 22/07/17
  * Time: 21:36
  */
-class despesas
+class despesa
 {
     private $pgto_desb;
     private $nrValor;
@@ -22,7 +22,7 @@ class despesas
 
     /**
      * @param mixed $pgto_desb
-     * @return despesas
+     * @return despesa
      */
     public function setPgtoDesb($pgto_desb)
     {
@@ -40,7 +40,7 @@ class despesas
 
     /**
      * @param mixed $nrValor
-     * @return despesas
+     * @return despesa
      */
     public function setNrValor($nrValor)
     {
@@ -58,7 +58,7 @@ class despesas
 
     /**
      * @param mixed $dsDespesa
-     * @return despesas
+     * @return despesa
      */
     public function setDsDespesa($dsDespesa)
     {

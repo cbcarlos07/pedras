@@ -84,7 +84,7 @@ class investiduraDao
         require_once "class.connection.php";
         require_once "../model/class.investidura.php";
         require_once "../model/class.desbravador.php";
-        require_once "../model/class.classes.php";
+        require_once "../model/class.classe.php";
         $obj = null;
         $this->connection = new connection();
 
@@ -114,7 +114,7 @@ class investiduraDao
     public function getListInvestidura (  ){
         require_once "class.connection.php";
         require_once "../model/class.investidura.php";
-        require_once "../model/class.classes.php";
+        require_once "../model/class.classe.php";
         require_once "../model/class.desbravador.php";
         require_once "../services/class.investiduraList.php";
         $retorno = new investiduraList();

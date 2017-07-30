@@ -6,19 +6,23 @@
  * Date: 16/07/17
  * Time: 14:55
  */
-class cidadeDao
+class despesaDao
 {
     private $connection =  null;
-  public function insert( cidade $cidade ){
+  public function insert( despesa $despesa ){
          require_once "class.connection.php";
          $retorno = false;
          $this->connection = new connection();
          $this->connection->beginTransaction();
          try{
-            $query = "INSERT INTO cidade (NM_CIDADE, CD_UF) VALUES (:cidade, :uf)";
+            $query = "INSERT INTO despesa 
+                        (CD_PGTO, NR_VALOR, DS_DESPESA) 
+                        VALUES 
+                        (:CD_PGTO, :NR_VALOR, :DS_DESPESA)";
             $stmt = $this->connection->prepare( $query );
-            $stmt->bindValue( ":cidade", $cidade->getNmCidade(), PDO::PARAM_STR );
-            $stmt->bindValue( ":uf", $cidade->getUf()->getCdCidade(), PDO::PARAM_STR );
+            $stmt->bindValue( ":CD_PGTO", $despesa->getPgtoDesb()->getCdPgto(), PDO::PARAM_INT);
+            $stmt->bindValue( ":NR_VALOR", $despesa->getNrValor(), PDO::PARAM_STR);
+            $stmt->bindValue( ":DS_DESPESA", $despesa->getDsDespesa(), PDO::PARAM_STR);
             $stmt->execute();
             $this->connection->commit();
             $retorno = true;
@@ -29,17 +33,22 @@ class cidadeDao
          return $retorno;
   }
 
-    public function update( cidade $cidade ){
+    public function update( despesa $despesa ){
         require_once "class.connection.php";
         $retorno = false;
         $this->connection = new connection();
         $this->connection->beginTransaction();
         try{
-            $query = "UPDATE cidade SET NM_CIDADE = :cidade, CD_UF = :uf WHERE CD_CIDADE = :codigo";
+            $query = "UPDATE despesa SET 
+                      CD_PGTO    = :CD_PGTO
+                     ,NR_VALOR   = :NR_VALOR
+                     ,DS_DESPESA = :DS_DESPESA 
+                     WHERE CD_PGTO = :codigo";
             $stmt = $this->connection->prepare( $query );
-            $stmt->bindValue( ":cidade", $cidade->getNmCidade(), PDO::PARAM_STR );
-            $stmt->bindValue( ":uf", $cidade->getUf()->getCdCidade(), PDO::PARAM_STR );
-            $stmt->bindValue( ":codigo", $cidade->getCdCidade(), PDO::PARAM_INT );
+            $stmt->bindValue( ":CD_PGTO", $despesa->getPgtoDesb()->getCdPgto(), PDO::PARAM_INT);
+            $stmt->bindValue( ":NR_VALOR", $despesa->getNrValor(), PDO::PARAM_STR);
+            $stmt->bindValue( ":DS_DESPESA", $despesa->getDsDespesa(), PDO::PARAM_STR);
+            $stmt->bindValue( ":codigo", $despesa->getPgtoDesb()->getCdPgto(), PDO::PARAM_INT);
             $stmt->execute();
             $this->connection->commit();
             $retorno = true;
@@ -50,15 +59,15 @@ class cidadeDao
         return $retorno;
     }
 
-    public function delete( $cidade ){
+    public function delete( $despesa ){
         require_once "class.connection.php";
         $retorno = false;
         $this->connection = new connection();
         $this->connection->beginTransaction();
         try{
-            $query = "DELETE FROM cidade WHERE CD_UF = :cidade";
+            $query = "DELETE FROM despesa WHERE CD_PGTO = :despesa";
             $stmt = $this->connection->prepare( $query );
-            $stmt->bindValue( ":cidade", $cidade, PDO::PARAM_INT );
+            $stmt->bindValue( ":despesa", $despesa, PDO::PARAM_INT );
             $stmt->execute();
             $this->connection->commit();
             $retorno = true;
@@ -69,24 +78,23 @@ class cidadeDao
         return $retorno;
     }
 
-    public function getCidade ( $cidade ){
+    public function getDespesa ( $despesa ){
         require_once "class.connection.php";
-        require_once "../model/class.cidade.php";
-        require_once "../model/class.uf.php";
-        $retorno = null;
+        require_once "../model/class.despesa.php";
+        $obj = null;
         $this->connection = new connection();
 
         try{
-            $query = "SELECT * FROM cidade WHERE CD_UF = :cidade";
+            $query = "SELECT * FROM despesa WHERE CD_PGTO = :despesa";
             $stmt = $this->connection->prepare( $query );
-            $stmt->bindValue( ":cidade", $cidade, PDO::PARAM_INT );
+            $stmt->bindValue( ":despesa", $despesa, PDO::PARAM_INT );
             $stmt->execute();
             if( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ){
-                $retorno = new cidade();
-                $retorno->setCdCidade( $row['CD_UF'] );
-                $retorno->setNmCidade( $row['NM_CIDADE'] );
-                $retorno->setUf( new uf() );
-                $retorno->getUf()->setCdUf( $row['CD_UF'] );
+                $obj = new despesa();
+                $obj->setPgtoDesb( new pgto_desb() );
+                $obj->getPgtoDesb()->setCdPgto( $row['CD_PGTO'] );
+                $obj->setNrValor( $row['NR_VALOR'] );
+                $obj->setDsDespesa( $row['DS_DESPESA'] );
 
             }
 
@@ -94,34 +102,31 @@ class cidadeDao
         }catch (PDOException $ex){
             echo "Erro: ".$ex->getMessage();
         }
-        return $retorno;
+        return $obj;
     }
 
-    public function getListCidade( $cidade ){
+    public function getListDespesa (  ){
         require_once "class.connection.php";
-        require_once "../model/class.cidade.php";
-        require_once "../services/class.cidadeList.php";
-        $retorno = new cidadeList();
+        require_once "../model/class.despesa.php";
+        require_once "../services/class.despesaList.php";
+        $retorno = new despesaList();
         $this->connection = new connection();
 
         try{
-            if( $cidade == "" ){
-                $query = "SELECT * FROM cidade";
+
+                $query = "SELECT * FROM despesa";
                 $stmt = $this->connection->prepare( $query );
-            }else{
-                $query = "SELECT * FROM cidade WHERE NM_CIDADE LIKE :cidade";
-                $stmt = $this->connection->prepare( $query );
-                $stmt->bindValue( ":cidade", "%$cidade%", PDO::PARAM_STR );
-            }
+
+
 
             $stmt->execute();
             while( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ){
-                $level = new cidade();
-                $level->setCdCidade( $row['CD_UF'] );
-                $level->setNmCidade( $row['NM_CIDADE'] );
-                $level->setUf( new uf() );
-                $level->getUf()->setCdUf( $row['CD_UF'] );;
-                $retorno->addCidade( $level );
+                $obj = new despesa();
+                $obj->setPgtoDesb( new pgto_desb() );
+                $obj->getPgtoDesb()->setCdPgto( $row['CD_PGTO'] );
+                $obj->setNrValor( $row['NR_VALOR'] );
+                $obj->setDsDespesa( $row['DS_DESPESA'] );
+                $retorno->addDespesa( $obj );
             }
 
 

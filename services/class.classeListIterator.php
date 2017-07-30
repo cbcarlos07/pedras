@@ -6,12 +6,12 @@
  * Date: 17/02/17
  * Time: 17:02
  */
-class classesListIterator
+class classeListIterator
 {
     protected $classesList;
     protected $currentClasses = 0;
 
-    public function __construct(classesList $classesList_in) {
+    public function __construct(classeList $classesList_in) {
         $this->classesList = $classesList_in;
     }
     public function getCurrentClasses() {
