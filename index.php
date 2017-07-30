@@ -1,3 +1,15 @@
+<?php
+$login = "";
+$senha = "";
+$checked = "";
+if(isset($_COOKIE['login'])){
+    $login = $_COOKIE['login'];
+    $senha = $_COOKIE['senha'];
+    $checked = "checked";
+
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -25,7 +37,7 @@
                 </div>
             <div class="col-md-4 col-md-offset-4">
 
-                <p class="alerta-login alert alert-success">a</p>
+                <p class="alerta-login alert "></p>
                 <div class="login-panel panel panel-default ">
 
                     <div class="panel-heading">
@@ -36,14 +48,16 @@
                         <form role="form">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control" id="login" placeholder="Login" name="login" type="text" autofocus
+                                    value="<?= $login; ?>">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input class="form-control" id="senha" placeholder="Password" name="password" type="password"
+                                           value="<?= $senha; ?>">
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                        <input name="remember" id="lembrar" type="checkbox" <?= $checked; ?> >Remember Me
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->

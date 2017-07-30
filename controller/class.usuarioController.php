@@ -43,10 +43,24 @@ class usuarioController
         return $retorno;
     }
 
-    public function getListNivel ( $usuario ){
+    public function getUsuarioByUsername ( $usuario ){
         require_once "../dao/class.usuarioDao.php";
         $ud = new usuarioDao();
-        $retorno = $ud->getListNivel( $usuario );
+        $retorno = $ud->getUsuarioByUsername( $usuario );
+        return $retorno;
+    }
+
+    public function verificaUsername ( $usuario ){
+        require_once "../dao/class.usuarioDao.php";
+        $ud = new usuarioDao();
+        $retorno = $ud->verificaUsername( $usuario );
+        return $retorno;
+    }
+
+    public function getListUsuario ( $usuario ){
+        require_once "../dao/class.usuarioDao.php";
+        $ud = new usuarioDao();
+        $retorno = $ud->getListUsuarios( $usuario );
         return $retorno;
     }
 

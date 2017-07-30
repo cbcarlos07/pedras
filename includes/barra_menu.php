@@ -8,7 +8,7 @@
                 <div class="user-section">
 
                     <div class="user-info">
-                        <div>Jonny <strong>Deen</strong></div>
+                        <div><?= $_SESSION['nome'] ?> <strong><?= $_SESSION['sobrenome'] ?></strong></div>
                         <div class="user-text-online">
                             <span class="user-circle-online btn btn-success btn-circle "></span>&nbsp;Online
                         </div>
@@ -28,7 +28,13 @@
                 </div>
                 <!--end search section-->
             </li>
-            <li class="selected">
+            <li >
+                <a href="principal.php"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+            </li>
+            <li >
+                <a href="usuario.php"><i class="fa fa-user fa-fw"></i>Usu&aacute;rios</a>
+            </li>
+          <!--  <li class="selected">
                 <a href="principal.php"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
             </li>
             <li>
@@ -42,8 +48,8 @@
                     </li>
                 </ul>
                 <!-- second-level-items -->
-            </li>
-            <li>
+           <!-- </li>-->
+            <!--<li>
                 <a href="timeline.html"><i class="fa fa-flask fa-fw"></i>Timeline</a>
             </li>
             <li>
@@ -51,8 +57,8 @@
             </li>
             <li>
                 <a href="forms.html"><i class="fa fa-edit fa-fw"></i>Forms</a>
-            </li>
-            <li>
+            </li>-->
+           <!-- <li>
                 <a href="#"><i class="fa fa-wrench fa-fw"></i>UI Elements<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
@@ -70,10 +76,10 @@
                     <li>
                         <a href="grid.html">Grid</a>
                     </li>
-                </ul>
+                </ul>-->
                 <!-- second-level-items -->
-            </li>
-            <li>
+           <!-- </li>-->
+            <!--<li>
                 <a href="#"><i class="fa fa-sitemap fa-fw"></i>Multi-Level Dropdown<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
@@ -97,13 +103,13 @@
                             <li>
                                 <a href="#">Third Level Item</a>
                             </li>
-                        </ul>
+                        </ul>-->
                         <!-- third-level-items -->
-                    </li>
-                </ul>
+                 <!--   </li>
+                </ul>-->
                 <!-- second-level-items -->
-            </li>
-            <li>
+            <!--</li>-->
+            <!--<li>
                 <a href="#"><i class="fa fa-files-o fa-fw"></i>Sample Pages<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
@@ -112,9 +118,9 @@
                     <li>
                         <a href="index.html">Login Page</a>
                     </li>
-                </ul>
+                </ul>-->
                 <!-- second-level-items -->
-            </li>
+            <!--</li>-->
         </ul>
         <!-- end side-menu -->
     </div>

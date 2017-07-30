@@ -26,8 +26,8 @@
                 <!-- Welcome -->
                 <div class="col-lg-12">
                     <div class="alert alert-info">
-                        <i class="fa fa-folder-open"></i><b>&nbsp;Hello ! </b>Welcome Back <b>Jonny Deen </b>
- <i class="fa  fa-pencil"></i><b>&nbsp;2,000 </b>Support Tickets Pending to Answere. nbsp;
+                        <i class="fa fa-folder-open"></i><b>&nbsp;Ol&aacute; ! </b>Bem vindo de volta <b><?= $_SESSION['nome'] ?></b>
+
                     </div>
                 </div>
                 <!--end  Welcome -->
@@ -442,15 +442,13 @@
     <!-- end wrapper -->
 
     <!-- Core Scripts - Include with every page -->
-    <script src="assets/plugins/jquery-1.10.2.js"></script>
-    <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
-    <script src="assets/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="assets/plugins/pace/pace.js"></script>
-    <script src="assets/scripts/siminta.js"></script>
+    <?php include "includes/scripts.php"; ?>
     <!-- Page-Level Plugin Scripts-->
     <script src="assets/plugins/morris/raphael-2.1.0.min.js"></script>
     <script src="assets/plugins/morris/morris.js"></script>
     <script src="assets/scripts/dashboard-demo.js"></script>
+    <script src="js/selecao.js"></script>
+
 
 </body>
 

@@ -144,9 +144,70 @@ class usuarioDao
         return $retorno;
     }
 
-    public function getListNivel ( $usuario ){
+    public function getUsuarioByUsername ( $usuario ){
         require_once "class.connection.php";
         require_once "../model/class.usuario.php";
+        require_once "../model/class.nivel.php";
+        $retorno = null;
+        $this->connection = new connection();
+
+        try{
+            $query = "SELECT * FROM usuario WHERE DS_LOGIN = :usuario";
+            $stmt = $this->connection->prepare( $query );
+            $stmt->bindValue( ":usuario", $usuario, PDO::PARAM_INT );
+            $stmt->execute();
+            if( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ){
+                $retorno = new usuario();
+                $retorno->setCdUsuario( $row['CD_USUARIO'] );
+                $retorno->setDsLogin( $row['DS_LOGIN'] );
+                $retorno->setNmUsuario( $row['NM_USUARIO'] );
+                $retorno->setDsSenha( $row['DS_SENHA'] );
+                $retorno->setNivel( new nivel() );
+                $retorno->getNivel()->getCdNivel( $row['CD_NIVEL'] );
+                $retorno->setSnAtivo( $row['SN_ATIVO'] );
+                $retorno->setSnSenhaAtual( $row['SN_SENHA_ATUAL'] );
+
+
+            }
+
+
+            $this->connection = null;
+        }catch (PDOException $ex){
+            echo "Erro: ".$ex->getMessage();
+        }
+        return $retorno;
+    }
+
+    public function verificaUsername ( $usuario ){
+        require_once "class.connection.php";
+        require_once "../model/class.usuario.php";
+        require_once "../model/class.nivel.php";
+        $retorno = true;
+        $this->connection = new connection();
+
+        try{
+            $query = "SELECT * FROM usuario WHERE DS_LOGIN = :usuario";
+            $stmt = $this->connection->prepare( $query );
+            $stmt->bindValue( ":usuario", $usuario, PDO::PARAM_INT );
+            $stmt->execute();
+            if( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ){
+                $retorno = false;
+
+
+            }
+
+            $retorno = true;
+            $this->connection = null;
+        }catch (PDOException $ex){
+            echo "Erro: ".$ex->getMessage();
+        }
+        return $retorno;
+    }
+
+    public function getListUsuarios ( $usuario ){
+        require_once "class.connection.php";
+        require_once "../model/class.usuario.php";
+        require_once "../model/class.nivel.php";
         require_once "../services/class.usuarioList.php";
         $userList = new usuarioList();
         $this->connection = new connection();
@@ -171,7 +232,8 @@ class usuarioDao
                 $retorno->setNmUsuario( $row['NM_USUARIO'] );
                 $retorno->setDsSenha( $row['DS_SENHA'] );
                 $retorno->setNivel( new nivel() );
-                $retorno->getNivel()->getCdNivel( $row['CD_NIVEL'] );
+                $retorno->getNivel()->setCdNivel( $row['CD_NIVEL'] );
+                $retorno->getNivel()->setDsNivel( $row['DS_NIVEL'] );
                 $retorno->setSnAtivo( $row['SN_ATIVO'] );
                 $retorno->setSnSenhaAtual( $row['SN_SENHA_ATUAL'] );
                 $userList->addUsuario( $retorno );
@@ -188,13 +250,14 @@ class usuarioDao
     public function loginUser ( $usuario, $senha ){
         require_once "class.connection.php";
         require_once "../model/class.usuario.php";
+        require_once "../model/class.nivel.php";
         require_once "../services/class.usuarioList.php";
-        $userList = new usuarioList();
+        $retorno = null;
         $this->connection = new connection();
 
         try{
 
-                $query = "SELECT * FROM usuario WHERE NM_USUARIO = :usuario AND DS_SENHA = :senha";
+                $query = "SELECT * FROM usuario WHERE DS_LOGIN = :usuario AND DS_SENHA = MD5(:senha)";
                 $stmt = $this->connection->prepare( $query );
                 $stmt->bindValue( ":usuario", $usuario, PDO::PARAM_STR );
                 $stmt->bindValue( ":senha", $senha, PDO::PARAM_STR );
@@ -202,6 +265,7 @@ class usuarioDao
 
             $stmt->execute();
             if( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ){
+              //  echo "Achou";
                 $retorno = new usuario();
                 $retorno->setCdUsuario( $row['CD_USUARIO'] );
                 $retorno->setDsLogin( $row['DS_LOGIN'] );
@@ -211,7 +275,7 @@ class usuarioDao
                 $retorno->getNivel()->getCdNivel( $row['CD_NIVEL'] );
                 $retorno->setSnAtivo( $row['SN_ATIVO'] );
                 $retorno->setSnSenhaAtual( $row['SN_SENHA_ATUAL'] );
-                $userList->addUsuario( $retorno );
+
             }
 
 
@@ -219,6 +283,6 @@ class usuarioDao
         }catch (PDOException $ex){
             echo "Erro: ".$ex->getMessage();
         }
-        return $userList;
+        return $retorno;
     }
 }
