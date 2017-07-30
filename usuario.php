@@ -23,7 +23,7 @@
             <div class="row">
                  <!--  page header -->
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tables</h1>
+                    <h1 class="page-header">Usu&aacute;rios</h1>
                 </div>
                  <!-- end  page header -->
             </div>
@@ -32,7 +32,7 @@
                     <!-- Advanced Tables -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                             Advanced Tables
+                             Usu&aacute;rios
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -74,7 +74,14 @@
 
     <script>
         $(document).ready(function () {
-            $('#dataTables-example').dataTable();
+            $('#dataTables-example').dataTable({
+                "bAutoWidth": false, // Disable the auto width calculation
+                "aoColumns": [
+                    { "sWidth": "20%" }, // 1st column width
+                    { "sWidth": "40%" }, // 2nd column width
+                    { "sWidth": "20%" } // 3rd column width and so on
+                ]
+            });
         });
     </script>
     <script src="js/selecao.js"></script>
