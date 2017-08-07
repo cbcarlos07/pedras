@@ -32,7 +32,15 @@
                 <a href="principal.php"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
             </li>
             <li >
-                <a href="usuario.php"><i class="fa fa-user fa-fw"></i>Usu&aacute;rios</a>
+                <a href="#"><i class="fa fa-folder-o fa-fw"></i>Cadastros</a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="usuario.php"><i class="fa fa-user fa-fw"></i>Usu&aacute;rios</a>
+                    </li>
+                    <li>
+                        <a href="morris.html">Morris Charts</a>
+                    </li>
+                </ul>
             </li>
           <!--  <li class="selected">
                 <a href="principal.php"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>

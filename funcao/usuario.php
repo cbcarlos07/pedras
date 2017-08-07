@@ -12,10 +12,18 @@ include "../includes/error.php";
  $login   = "";
  $senha   = "";
  $lembrar = "";
+ $nivel   = 0;
+ $nome    = "";
+ $ativo   = "";
+ $codigo  = 0;
 
  if( isset( $_POST['login'] ) ){
      $login = $_POST['login'];
  }
+
+if( isset( $_POST['codigo'] ) ){
+    $codigo = $_POST['codigo'];
+}
 
  if( isset( $_POST['senha'] ) ){
      $senha = $_POST['senha'];
@@ -25,6 +33,18 @@ include "../includes/error.php";
      $lembrar = $_POST['lembrar'];
  }
 
+  if( isset( $_POST['nome'] ) ){
+    $nome = $_POST['nome'];
+  }
+
+if( isset( $_POST['nivel'] ) ){
+    $nivel = $_POST['nivel'];
+}
+
+if( isset( $_POST['ativo'] ) ){
+    $ativo = $_POST['ativo'];
+}
+
 
 
  switch ( $acao ){
@@ -33,6 +53,13 @@ include "../includes/error.php";
          break;
      case 'G':
          getListUsuarios();
+         break;
+     case 'V':
+         verificarLogin( $login );
+         break;
+     case 'I':
+         inserirUsuario( $login, $nome, $senha, $nivel, $ativo  );
+         break;
  }
 
 
@@ -104,4 +131,38 @@ include "../includes/error.php";
      }
      echo json_encode( array( "usuarios" => $usuarios ) );
  }
+
+  function verificarLogin( $login ){
+     //echo "VerificarLogin";
+     require_once "../controller/class.usuarioController.php";
+     $usuarioController = new usuarioController();
+     $retorno = $usuarioController->verificaUsername( $login );
+
+     if( $retorno ){
+         echo json_encode( array( "retorno" => 1 ));
+     }else{
+         echo json_encode( array( "retorno" => 0 ));
+     }
+  }
+
+  function inserirUsuario( $login, $nome, $senha, $nivel, $ativo ){
+      require_once "../controller/class.usuarioController.php";
+      require_once "../model/class.usuario.php";
+      require_once "../model/class.nivel.php";
+
+      $usuarioController = new usuarioController();
+      $usuario = new usuario();
+      $usuario->setDsLogin( $login );
+      $usuario->setNmUsuario( $nome );
+      $usuario->setDsSenha( $senha );
+      $usuario->setNivel( new nivel() );
+      $usuario->getNivel()->setCdNivel( $nivel );
+      $usuario->setSnAtivo( $ativo );
+      $retorno = $usuarioController->insert( $usuario );
+      if( $retorno ){
+          echo json_encode( array( "retorno" => 1 ) );
+      }else{
+          echo json_encode( array( "retorno" => 0 ) );
+      }
+  }
 

@@ -25,14 +25,24 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">Usu&aacute;rios</h1>
                 </div>
+
+
                  <!-- end  page header -->
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <!-- Advanced Tables -->
                     <div class="panel panel-default">
+                        <div class="col-lg-2">
+                            <button class="btn btn-primary btn-novo">Novo</button>
+                        </div>
                         <div class="panel-heading">
-                             Usu&aacute;rios
+
+                                Usu&aacute;rios
+
+
+
+
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">

@@ -196,7 +196,7 @@ class usuarioDao
 
             }
 
-            $retorno = true;
+
             $this->connection = null;
         }catch (PDOException $ex){
             echo "Erro: ".$ex->getMessage();
